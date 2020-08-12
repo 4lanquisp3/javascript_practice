@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>
+    Ejercicios en JavaScript
+  </h1>
+  <div class="exercise-list">
+    <div class="exercise" id="first-exercise">
+      <h2>Imprimir 10 veces una oración:</h2>
+    <script>    
+        var newTagP = document.createElement("p")
+      for(var i = 0; i < 10; i++){
+        newTagP.setAttribute("id",`id${i+1}`)
+        var newContent = document.createTextNode(`${i+1}.- Un día soleado.`)
+        newTagP.appendChild(newContent)
+        var ref_child = document.getElementById("first-exercise")
+        ref_child.insertAdjacentElement('beforeend',newTagP)
+        document.body.insert
+      }
+    </script>
+    </div>
+    <div class="exercise" id="second-exercise">
+      <h2>Otro ejercicio aburrido</h2>
+      
+    </div>
+    
+  </div>
+  
+</body>
+</html>
