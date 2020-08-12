@@ -1,0 +1,29 @@
+.wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;  
+}
+
+.exercise{
+  border-radius: 5px;
+  margin: 10px;
+  flex-shrink: 0;
+  width: 350px;
+  padding: 10px;
+  border: 1px solid rgb(184, 162, 68);
+  background-color: khaki;
+}
+
+.exercise form h2{
+  margin-top: 5px;
+  font-size: 1.5em;
+}
+
+@media screen and (max-width: 375px){
+  .exercise{
+    width: auto;
+    flex-shrink: initial;
+    margin: 5px;
+    padding: 5px;
+  }
+}

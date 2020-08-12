@@ -4,151 +4,167 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <form name="saludar" action="">
-    <h2>1.- Pedir nombre y saludar</h2>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="nombre">
-    <input type="button" value="saludar" onclick="saludando(nombre.value)"><br><br>
-    <input type="text" name="salida">
-  </form>
-  <script>
-    /* El dom crea un array con todos los formularios, y también crea un array dentro de los formularios
-       con todos sus elementos o campos que este contiene. */
-    /* Hay varias maneras de acceder a un formulario
-       document.forms[0]; en el orden en el que estan en la pagina
-       document.forms["datos"];  datos es el atributo 'name' del tag 'form'
-       document.forms.datos;
-       document.datos;
-     */
-    function saludando(nombre){
-      document.saludar.salida.value = `Hola ${nombre}!!!`;
-    }  
-  </script>
 
-  <form name="frmFibos">
-    <h2>2.- Imprime Fibos</h2>
-    <label for="">Limite</label>
-    <input type="text" name="limite">
-    <input type="button" value="imprimir" onclick="fibos(limite.value)"><br><br>    
-    <textarea name="salida" id="" cols="30" rows="10"></textarea>
-  </form>
-  <script>
-    function fibos(limite){
-      var limite = parseInt(limite)      
-      // salida: 1,1,2,3,5,8,13
-      var a = 1, b = 0, y = 0
-      var salida = ''
-      for(var i = 0; i<limite;i++){
-        y = a + b 
-        if(i+1 == limite){
-          salida = salida + y
-        }else{
-          salida = salida + y + ', '
-        }        
-        a = b
-        b = y
-      }
-      document.frmFibos.salida.value = salida
-    }
-  </script>
-  <form action="" name="formPrimos">
-    <h2>3.- Imprime los primeros "X" primos</h2>
-    <label for="limite">X:</label>
-    <input type="text" name="limite">
-    <input type="button" value="calcular" onclick="primos(limite.value)"><br><br>
-    <textarea name="salida" id="" cols="30" rows="10"></textarea>
-  </form>  
-  <script>
-    function primos(limite){
-      var salida = ""
-      var limite = parseInt(limite)
-      var j = 0
-      var num = 1
-      while(j < limite){
-        var c = 0
-        for(var i = 1; i<=num; i++){
-          if(num%i==0){
-            c += 1
+  <div class="wrapper">
+    <div class="exercise">
+      <form name="saludar" action="">
+        <h2>1.- Pedir nombre y saludar</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="nombre">
+        <input type="button" value="saludar" onclick="saludando(nombre.value)"><br><br>
+        <input type="text" name="salida">
+      </form>
+      <script>
+        /* El dom crea un array con todos los formularios, y también crea un array dentro de los formularios
+           con todos sus elementos o campos que este contiene. */
+        /* Hay varias maneras de acceder a un formulario
+           document.forms[0]; en el orden en el que estan en la pagina
+           document.forms["datos"];  datos es el atributo 'name' del tag 'form'
+           document.forms.datos;
+           document.datos;
+         */
+        function saludando(nombre){
+          document.saludar.salida.value = `Hola ${nombre}!!!`;
+        }  
+      </script>
+    </div>
+    <div class="exercise">
+      <form name="frmFibos">
+        <h2>2.- Imprime Fibos</h2>
+        <label for="">Limite</label>
+        <input type="text" name="limite">
+        <input type="button" value="imprimir" onclick="fibos(limite.value)"><br><br>    
+        <textarea name="salida" id="" cols="30" rows="10"></textarea>
+      </form>
+      <script>
+        function fibos(limite){
+          var limite = parseInt(limite)      
+          // salida: 1,1,2,3,5,8,13
+          var a = 1, b = 0, y = 0
+          var salida = ''
+          for(var i = 0; i<limite;i++){
+            y = a + b 
+            if(i+1 == limite){
+              salida = salida + y
+            }else{
+              salida = salida + y + ', '
+            }        
+            a = b
+            b = y
           }
+          document.frmFibos.salida.value = salida
         }
-        if(c == 2){
-          salida = salida + num+","
-          j += 1
+      </script>
+    </div>
+    <div class="exercise">
+      <form action="" name="formPrimos">
+        <h2>3.- Imprime los primeros "X" primos</h2>
+        <label for="limite">X:</label>
+        <input type="text" name="limite">
+        <input type="button" value="calcular" onclick="primos(limite.value)"><br><br>
+        <textarea name="salida" id="" cols="30" rows="10"></textarea>
+      </form>  
+      <script>
+        function primos(limite){
+          var salida = ""
+          var limite = parseInt(limite)
+          var j = 0
+          var num = 1
+          while(j < limite){
+            var c = 0
+            for(var i = 1; i<=num; i++){
+              if(num%i==0){
+                c += 1
+              }
+            }
+            if(c == 2){
+              salida = salida + num+","
+              j += 1
+            }
+            num += 1
+          }
+          document.formPrimos.salida.value = salida
         }
-        num += 1
-      }
-      document.formPrimos.salida.value = salida
-    }
-  </script>
-  <form action="" name="formDigitos">
-    <h2>4.- calcular el número de digitos de X:</h2>
-    <label for="">X:</label>
-    <input type="number" name="x">
-    <input type="button" onclick="calcDigitos(x.value)" value="Calcular"><br><br>
-    <input type="text" name="salida">
-  </form>
-  <script>
-    function calcDigitos(x){
-      //console.log(x.length)
-      var x = parseInt(x)
-      digitos = 0
-      while(x!=0){
-        digitos += 1
-        x = parseInt(x/10)
-      }
-      // Hay diferentes formas de acceder a los campos del formulario
-      document.forms['formDigitos'].salida.value = digitos + " Digitos"      
-    }
-  </script>
-  <form action="" name="frmFactorial">
-    <h2>5.- Calcular el factorial de X:</h2>
-    <label for="">X:</label>
-    <input type="number" name="x" placeholder="5">
-    <input type="button" value="calcular" onclick="factorial(x.value)"><br><br>
-    
-    <!-- Si ponemos type="number" nos dará error, ya que tambien queremos poner texto -->
-    <input type="text" name="salida" id="">    
-  </form>
-  <script>
-    function factorial(x){
-      var x = parseInt(x)
-      var factorial = 1
-      for(var i = 1; i<=x; i++){
-        factorial = factorial*i
-      }
-      // Otra forma de acceder
-      document.forms.frmFactorial.salida.value = `El factorial es: ${factorial}`
-    }
-  </script>
-
-  <form action="" name="frmMultiplo">
-    <h2>6.- Cuantos de digitos del número X son multiplos de Y</h2>
-    <label for="">X:</label>
-    <input type="text" name="x" id=""><br><br>
-    <label for="">Y:</label>
-    <input type="text" name="y">
-    <input type="button" onclick="multiplos(x.value, y.value)" value="calcular"><br><br>
-    <input type="text" name="resultado">
-  </form>
-  <script>
-    function multiplos(x,y){
-      var x = parseInt(x)
-      var y = parseInt(y)
-      var multiplos = 0
-      while(x!=0){
-        var mod = x%10
-        x = parseInt(x/10)
-        if(mod%y==0){
-          multiplos += 1
+      </script>
+    </div>    
+    <div class="exercise">
+      <form action="" name="formDigitos">
+        <h2>4.- calcular el número de digitos de X:</h2>
+        <label for="">X:</label>
+        <input type="number" name="x">
+        <input type="button" onclick="calcDigitos(x.value)" value="Calcular"><br><br>
+        <input type="text" name="salida">
+      </form>
+      <script>
+        function calcDigitos(x){
+          //console.log(x.length)
+          var x = parseInt(x)
+          digitos = 0
+          while(x!=0){
+            digitos += 1
+            x = parseInt(x/10)
+          }
+          // Hay diferentes formas de acceder a los campos del formulario
+          document.forms['formDigitos'].salida.value = digitos + " Digitos"      
         }
-      }
-      if(multiplos == 1)
-        document.frmMultiplo.resultado.value = multiplos + " multiplo!!"
-      else
-        document.frmMultiplo.resultado.value = multiplos + " multiplos!!"
-    }
-  </script>
+      </script>
+    </div>
+    <div class="exercise">
+      <form action="" name="frmFactorial">
+        <h2>5.- Calcular el factorial de X:</h2>
+        <label for="">X:</label>
+        <input type="number" name="x" placeholder="5">
+        <input type="button" value="calcular" onclick="factorial(x.value)"><br><br>
+        
+        <!-- Si ponemos type="number" nos dará error, ya que tambien queremos poner texto -->
+        <input type="text" name="salida" id="">    
+      </form>
+      <script>
+        function factorial(x){
+          var x = parseInt(x)
+          var factorial = 1
+          for(var i = 1; i<=x; i++){
+            factorial = factorial*i
+          }
+          // Otra forma de acceder
+          document.forms.frmFactorial.salida.value = `El factorial es: ${factorial}`
+        }
+      </script>
+    </div>
+    <div class="exercise">
+      <form action="" name="frmMultiplo">
+        <h2>6.- Cuantos de digitos del número X son multiplos de Y</h2>
+        <label for="">X:</label>
+        <input type="text" name="x" id=""><br><br>
+        <label for="">Y:</label>
+        <input type="text" name="y">
+        <input type="button" onclick="multiplos(x.value, y.value)" value="calcular"><br><br>
+        <input type="text" name="resultado">
+      </form>
+      <script>
+        function multiplos(x,y){
+          var x = parseInt(x)
+          var y = parseInt(y)
+          var multiplos = 0
+          while(x!=0){
+            var mod = x%10
+            x = parseInt(x/10)
+            if(mod%y==0){
+              multiplos += 1
+            }
+          }
+          if(multiplos == 1)
+            document.frmMultiplo.resultado.value = multiplos + " multiplo!!"
+          else
+            document.frmMultiplo.resultado.value = multiplos + " multiplos!!"
+        }
+      </script>
+    </div>
+      
+  </div>
+  
 </body>
 </html>
