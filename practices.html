@@ -54,7 +54,7 @@
     }
   </script>
   <form action="" name="formPrimos">
-    <h2>2.- Imprime los primeros "X" primos</h2>
+    <h2>3.- Imprime los primeros "X" primos</h2>
     <label for="limite">X:</label>
     <input type="text" name="limite">
     <input type="button" value="calcular" onclick="primos(limite.value)"><br><br>
@@ -80,6 +80,74 @@
         num += 1
       }
       document.formPrimos.salida.value = salida
+    }
+  </script>
+  <form action="" name="formDigitos">
+    <h2>4.- calcular el número de digitos de X:</h2>
+    <label for="">X:</label>
+    <input type="number" name="x">
+    <input type="button" onclick="calcDigitos(x.value)" value="Calcular"><br><br>
+    <input type="text" name="salida">
+  </form>
+  <script>
+    function calcDigitos(x){
+      //console.log(x.length)
+      var x = parseInt(x)
+      digitos = 0
+      while(x!=0){
+        digitos += 1
+        x = parseInt(x/10)
+      }
+      // Hay diferentes formas de acceder a los campos del formulario
+      document.forms['formDigitos'].salida.value = digitos + " Digitos"      
+    }
+  </script>
+  <form action="" name="frmFactorial">
+    <h2>5.- Calcular el factorial de X:</h2>
+    <label for="">X:</label>
+    <input type="number" name="x" placeholder="5">
+    <input type="button" value="calcular" onclick="factorial(x.value)"><br><br>
+    
+    <!-- Si ponemos type="number" nos dará error, ya que tambien queremos poner texto -->
+    <input type="text" name="salida" id="">    
+  </form>
+  <script>
+    function factorial(x){
+      var x = parseInt(x)
+      var factorial = 1
+      for(var i = 1; i<=x; i++){
+        factorial = factorial*i
+      }
+      // Otra forma de acceder
+      document.forms.frmFactorial.salida.value = `El factorial es: ${factorial}`
+    }
+  </script>
+
+  <form action="" name="frmMultiplo">
+    <h2>6.- Cuantos de digitos del número X son multiplos de Y</h2>
+    <label for="">X:</label>
+    <input type="text" name="x" id=""><br><br>
+    <label for="">Y:</label>
+    <input type="text" name="y">
+    <input type="button" onclick="multiplos(x.value, y.value)" value="calcular"><br><br>
+    <input type="text" name="resultado">
+  </form>
+  <script>
+    function multiplos(x,y){
+      var x = parseInt(x)
+      var y = parseInt(y)
+      var multiplos = 0
+      while(x!=0){
+        var mod = x%10
+        x = parseInt(x/10)
+        if(mod%y==0){
+          multiplos += 1
+        }
+      }
+      if(multiplos == 1)
+        document.frmMultiplo.resultado.value = multiplos + " multiplo!!"
+      else
+        document.frmMultiplo.resultado.value = multiplos + " multiplos!!"
     }
   </script>
 </body>
