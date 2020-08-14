@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -163,7 +164,93 @@
         }
       </script>
     </div>
-      
+    <div class="exercise">
+      <form name="frmOrdenaDigitos" action="">
+        <h2>7.- Ordenar descendentemente los digitos del número X</h2>
+        <label for="">X:</label>
+        <input type="text" name="x">
+        <input type="button" value="ordenar" onclick="ordenarDigitos(x.value)"><br><br>
+        <input type="text" name="resultado">
+      </form>
+      <script>
+        function ordenarDigitos(x){
+          x = parseInt(x)
+          let nn = 0, on = x, c = 0
+          let d
+          
+          for(let i = 9; i >= 0; i--){
+            x = on
+            on = 0
+            while(x != 0){
+              d = x % 10
+              x = Math.floor(x / 10)
+              if(d == i){
+                nn = nn * 10 + d                
+              }else{
+                if(on == 0 && d == 0){
+                  c++
+                }else{
+                  on = on * 10 + d
+                }
+              }
+            }
+          }
+          nn = nn * Math.pow(10,c)
+          document.frmOrdenaDigitos.resultado.value = nn + " ordenado!!!"
+        }
+      </script>
+    </div>
+    <div class="exercise">
+      <h2>
+        8.- Pedir un lote de números hasta que se ingrese un negativo, de los cuales 
+        sumar los pares, multiplicar los impares y unir en un nuevo número todos los números
+        que sean de un solo digito.
+      </h2>
+      <form action="" name="frmLote1">
+        <input type="button" value="Iniciar programa" onclick="pedirLote()"><br><br>
+        Suma de pares: <input type="text" name="suma_pares">
+        Multiplicación de Impares: <input type="text" name="multi_inpares">
+        Nuevo número: <input type="text" name="nuevo_numero" >
+      </form>
+      <script>
+        async function pedirLote(){
+          
+          /* por alguna razón este alert no se muestra */
+          /* swal("Bienvenido, introduce números positivos, para finalizar ingresa un número negativo"); */
+          let pares = 0
+          let inpares = 1
+          let nn = 0
+          
+          let n = await swal("Introduce un numero:", {
+              content: "input",
+            }).then((value) => {
+                return parseInt(value);
+            });
+
+          while(n >= 0){            
+            if(n % 2 == 0){
+              pares = pares + n
+            }else{
+              inpares = inpares * n
+            }
+
+            if(n < 10){
+              nn = nn * 10 + n
+            }
+
+            n = await swal("Introduce un numero:", {
+              content: "input",
+            }).then((value) => {
+                return parseInt(value);
+            });
+          }
+
+          document.frmLote1.suma_pares.value = pares
+          document.frmLote1.multi_inpares.value = inpares
+          document.frmLote1.nuevo_numero.value = nn
+        }
+      </script>
+    </div>  
   </div>
   
 </body>
