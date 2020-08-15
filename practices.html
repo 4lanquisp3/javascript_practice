@@ -200,50 +200,51 @@
         }
       </script>
     </div>
-    <div class="exercise">
-      <h2>
-        8.- Pedir un lote de números hasta que se ingrese un negativo, de los cuales 
-        sumar los pares, multiplicar los impares y unir en un nuevo número todos los números
-        que sean de un solo digito.
-      </h2>
+    <div class="exercise">      
       <form action="" name="frmLote1">
+        <h2>
+          8.- Pedir un lote de números hasta que se ingrese un negativo, de los cuales 
+          sumar los pares, multiplicar los impares y unir en un nuevo número todos los números
+          que sean de un solo digito.
+        </h2>
         <input type="button" value="Iniciar programa" onclick="pedirLote()"><br><br>
         Suma de pares: <input type="text" name="suma_pares">
         Multiplicación de Impares: <input type="text" name="multi_inpares">
         Nuevo número: <input type="text" name="nuevo_numero" >
       </form>
       <script>
-        async function pedirLote(){
-          
+        async function pedirLote(){          
           /* por alguna razón este alert no se muestra */
           /* swal("Bienvenido, introduce números positivos, para finalizar ingresa un número negativo"); */
           let pares = 0
-          let inpares = 1
-          let nn = 0
-          
-          let n = await swal("Introduce un numero:", {
-              content: "input",
-            }).then((value) => {
-                return parseInt(value);
-            });
+          let inpares = 0
+          let nn = 0          
+          let n = 0
 
-          while(n >= 0){            
-            if(n % 2 == 0){
-              pares = pares + n
-            }else{
-              inpares = inpares * n
-            }
-
-            if(n < 10){
-              nn = nn * 10 + n
-            }
-
+          do{
             n = await swal("Introduce un numero:", {
               content: "input",
             }).then((value) => {
-                return parseInt(value);
+                return value;
             });
-          }
+            if(n === "" || n === NaN || n === null)
+              break
+            else n = parseInt(n)
+
+            if(n % 2 === 0){
+              pares = pares + n
+            }else{
+              if(inpares === 0){
+                inpares = 1
+              }
+              inpares = inpares * n
+            }
+
+            if(n < 10 && n >= 1){
+              nn = nn * 10 + n
+            }
+            
+          }while(n >= 0)
 
           document.frmLote1.suma_pares.value = pares
           document.frmLote1.multi_inpares.value = inpares
@@ -251,6 +252,218 @@
         }
       </script>
     </div>  
+    <div class="exercise">
+      <form action="" name="frmLote2">
+        <h2>
+          9.- pedir un lote de números hasta que se introduzca un número múltiplo de cinco,
+          de los cuales indicar cuantos son multiplos de tres, componer en un número todos los 
+          números de dos digitos.
+        </h2>
+        <input type="button" value="Iniciar programa" onclick="pedirLote1()"><br><br>
+        Multiplos de 3: <input type="text" name="multiplos">
+        Número compuesto: <input type="text" name="numero_compuesto" >
+      </form>
+      <script>
+        async function pedirLote1(){          
+          /* por alguna razón este alert no se muestra */
+          /* swal("Bienvenido, introduce números positivos, para finalizar ingresa un número negativo"); */
+          let multiplos = 0
+          let nn = 0
+          let n
+          do{            
+            n = await swal("Introduce un numero:", {
+              content: "input",
+            }).then((value) => {
+                return parseInt(value);
+            });
+
+            if(n % 3 == 0){
+              multiplos++
+            }
+
+            if(n > 9 && n < 100){
+              nn = nn * 100 + n
+            }            
+          }while(n % 5 != 0)
+
+          document.frmLote2.multiplos.value = multiplos
+          document.frmLote2.numero_compuesto.value = nn
+        }
+      </script>
+    </div>
+    <div class="exercise">
+      <form action="" name="frmLote3">
+        <h2>
+          10.- Pedir un número, después pedir esa cantidad de números de los cuales mostrar
+          su suma.
+        </h2>
+        <input type="button" value="Iniciar programa" onclick="pedirLote2()"><br><br>
+        Suma: <input type="text" name="suma">
+      </form>
+      <script>
+        async function pedirLote2(){          
+          /* por alguna razón este alert no se muestra */
+          /* swal("Bienvenido, introduce números positivos, para finalizar ingresa un número negativo"); */
+          let suma = 0
+          let n
+          let x = await swal("Introduce un numero:", {
+              content: "input",
+            }).then((value) => {
+                return parseInt(value);
+            });
+          for(i = 0; i < x; i++){
+            n = await swal("Introduce un numero:", {
+              content: "input",
+            }).then((value) => {
+                return parseInt(value);
+            });
+            suma = suma + n
+          }
+
+          document.frmLote3.suma.value = suma
+        }
+      </script>
+    </div>
+    <div class="exercise">
+      <form action="" name="frmSerie1">
+        <h2>11.- Dado X, mostrar X cantidad de numeros de la serie 1,0,1,0,1,0....</h2>
+        <label for="">X: </label>        
+        <input type="text" name="x" value="">
+        <input type="button" onclick="serie1(x.value)" value="Calcular"><br><br>
+        <input type="text" id="salida" name="salida">
+      </form>
+      <script>
+        function serie1(x){
+          x = parseInt(x)
+          salida = document.getElementById('salida')
+          let sw = 0
+          for(let i = 0; i < x; i++){
+            if(i % 2 === 0){
+              sw = '1, '
+            }else{
+              sw = '0, '
+            }
+            salida.value += sw
+          }
+        }
+      </script>
+    </div>
+    <div class="exercise">
+      <form action="" name="frmSerie2">
+        <h2>12.- Dado X, mostrar X cantidad de numeros de la serie 1,0,1,0,0,1,0,0,0,....</h2>
+        <label for="">X: </label>
+        <input type="text" name="x">
+        <input type="button" onclick="serie2(x.value)" value='Calcular'><br><br>
+        <input type="text" name="salida" id="salidaSerie2">
+      </form>
+      <script>
+        function serie2(x){
+          x = parseInt(x)
+          salida = document.getElementById('salidaSerie2')
+          let limite_cero = 0
+          let cont_cero = 0
+          for(let i = 0; i < x; i++){
+            if(cont_cero === limite_cero){
+              limite_cero += 1
+              cont_cero = 0
+              salida.value += '1, '
+            }else{
+              cont_cero += 1
+              salida.value += '0, '
+            }
+          }
+        }
+      </script>
+    </div>
+    <div class="exercise">
+      <form action="" name="frmSerie3">
+        <h2>13.- Imprimir la serie: 1,0,1,1,0,0,1,1,1,0,0,0</h2>
+        X: <input type="text" name="x">
+        <input type="button" value="calcular" onclick="serie3(x.value)"><br><br>
+        <input type="text" name="salida" size="50" id="salidaSerie3">
+      </form>
+      <script>
+        function serie3(x){
+          x = parseInt(x)
+          let salida = document.getElementById('salidaSerie3')
+          let limite = 2
+          let contador = 0          
+          let i = 0
+          let val = 1
+          while(i < x){
+            if(contador === limite){
+              contador = 0
+              limite += 2
+              val = 1 - val
+            }else{
+              contador += 1
+              salida.value += `${val}, `
+              i += 1
+              if(contador === limite/2){
+                val = 1 - val
+              }
+            }
+          }
+
+        }
+      </script>
+    </div>
+    <div class="exercise">
+      <form action="" name="frmSumatoria1">
+        <h2>14.- Dado un limite X, mostrar la sumatoria de: 1/2 + 3/4 + 5/6 + 7/8 + 9/10 + ....</h2>
+        X: <input type="text" name="x">
+        <input type="button" value="sumar" onclick="sumatoria1(x.value)"><br><br>
+        <input type="text" id="salidaSum1">
+      </form>
+      <script>
+        function sumatoria1(x){
+          x = parseInt(x)
+          let suma = 0
+          let numerador = 1
+          for(let i = 0; i < x; i++){
+            suma = suma + Math.round((numerador/((i + 1) * 2)) * 100)/100
+            numerador += 2
+            console.log(suma)
+          }
+          salida = document.getElementById('salidaSum1')
+
+          salida.value = suma
+        }
+      </script>
+    </div>
+    <div class="exercise">
+      <form name="frmTest" action="">
+        <h2>7.- Ordenar descendentemente los digitos del número X</h2>
+        <label for="">X:</label>
+        <input type="text" name="x">
+        <input type="button" value="ordenar" onclick="ordenarDigitos1(x.value)"><br><br>
+        <input type="text" name="resultado">
+      </form>
+      <script>
+        function ordenarDigitos1(n){
+          let digito = 0
+          let nn = 0, on = 0
+          let c = 0
+          if(n === 0){ return 0 }
+          for(let i = 9; i > 0; i--){
+            while(n != 0){
+              digito = n % 10
+              n = Math.floor(n / 10)
+              if(digito === i){
+                nn = nn * 10 + digito      
+              }else{
+                if(on === 0 && digito === 0){c++}
+                on = on * 10 + digito
+              }
+            }
+            n = on
+            on = 0
+          }
+          nn = nn * Math.pow(10, c)
+          document.frmTest.resultado.value = nn + " ordenado!!!"
+        }
+      </script>
+    </div>
   </div>
   
 </body>
