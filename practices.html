@@ -433,34 +433,107 @@
     </div>
     <div class="exercise">
       <form name="frmTest" action="">
-        <h2>7.- Ordenar descendentemente los digitos del número X</h2>
-        <label for="">X:</label>
-        <input type="text" name="x">
-        <input type="button" value="ordenar" onclick="ordenarDigitos1(x.value)"><br><br>
-        <input type="text" name="resultado">
+        <h2>Pruebas y testeo: </h2>        
       </form>
-      <script>
-        function ordenarDigitos1(n){
-          let digito = 0
-          let nn = 0, on = 0
-          let c = 0
-          if(n === 0){ return 0 }
-          for(let i = 9; i > 0; i--){
-            while(n != 0){
-              digito = n % 10
-              n = Math.floor(n / 10)
-              if(digito === i){
-                nn = nn * 10 + digito      
-              }else{
-                if(on === 0 && digito === 0){c++}
-                on = on * 10 + digito
-              }
+      <script>    
+        function soniguales(number){
+          let arr = number.toString().split("")
+          for(const i of arr){
+            if(arr[0] != i){
+              return false
             }
-            n = on
-            on = 0
           }
-          nn = nn * Math.pow(10, c)
-          document.frmTest.resultado.value = nn + " ordenado!!!"
+          return true
+        }
+
+        function ascen(value){
+          let arr = value.toString().split("")
+          for(let i = 0; i < arr.length - 1; i++){
+            if(arr[i] != (parseInt(arr[i + 1]) - 1)){
+              return false
+            }
+          }
+          return true
+        }
+
+        
+        function descen(value){
+          let arr = value.toString().split("")
+          for(let i = 0; i < arr.length - 1; i++){
+            if(arr[i] != (parseInt(arr[i + 1]) + 1)){
+              return false
+            }
+          }
+          return true
+        }
+
+        function palindrome(value){
+          let str = value.toString()
+          let str2 = ''
+          for(let i = 0; i < str.length; i++){
+            str2 = str.charAt(i) + str2
+          }
+          return str === str2 ? true : false
+        }
+
+        function isInteresting(number, awesomePhrases) {                  
+          if(number <= 99){ return 0}
+          if(awesomePhrases.includes(number)){
+            return 2
+          }
+          if(awesomePhrases.includes(number + 1) || awesomePhrases.includes(number + 2)){
+            return 1
+          }
+
+          if((number % Math.pow(10,number.toString().length - 1)) === 0){
+            return 2
+          }else{
+            if(((number + 1) % Math.pow(10,number.toString().length - 1) === 0)
+                || ((number + 2) % Math.pow(10,number.toString().length - 1)) === 0){
+              return 1
+            }
+          }
+
+          if(soniguales(number)){
+            return 2
+          }else{
+            if(soniguales(number + 1) || soniguales(number + 2)){
+              return 1
+            }
+          }
+
+          if(ascen(number)){
+            return 2
+          }else{
+            if(ascen(number + 1) || ascen(number + 2)){
+              return 1
+            }
+          }
+
+          if(descen(number)){
+            return 2
+          }else{
+            if(descen(number + 1) || descen(number + 2)){
+              return 1
+            }  
+          }
+
+          if(palindrome(number)){
+            return 2
+          }else{
+            if(palindrome(number + 1) || palindrome(number + 2)){
+              return 1
+            }  
+          }
+
+          if(palindrome(number)){
+            return 2
+          }else{
+            if(palindrome(number + 1) || palindrome(number + 2)){
+              return 1
+            }  
+          }
+
         }
       </script>
     </div>
