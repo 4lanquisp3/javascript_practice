@@ -435,7 +435,8 @@
       <form name="frmTest" action="">
         <h2>Pruebas y testeo: </h2>        
       </form>
-      <script>    
+      <script>
+      /* Ejercicio de Codewars */    
         function soniguales(number){
           let arr = number.toString().split("")
           for(const i of arr){
@@ -536,8 +537,26 @@
 
         }
       </script>
+
+      <script>
+        /* Ejercicio de codewars */
+        function reverse(arr) {
+          let j = arr.length - 1
+          for(let i = 0; i < arr.length / 2; i++){
+            let temp = arr[i]
+            arr[i] = arr[j]
+            arr[j] = temp
+            j--
+          }
+        }
+      </script>
+      <script>
+        function validPass(password){          
+          return 3 < password.length < 20 && password.search(/^[a-zA-Z0-9]*[0-9]+[a-zA-Z0-9]*$/) != -1 ? "VALID" : "INVALID"          
+        }
+      </script>
     </div>
   </div>
-  
 </body>
 </html>
+
