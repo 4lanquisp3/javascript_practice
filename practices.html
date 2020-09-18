@@ -555,8 +555,48 @@
           return 3 < password.length < 20 && password.search(/^[a-zA-Z0-9]*[0-9]+[a-zA-Z0-9]*$/) != -1 ? "VALID" : "INVALID"          
         }
       </script>
+
+      <script>        
+        function pk(k, n, memo){                    
+          if(memo[k][n] != -1){ return memo[k][n] }          
+          if(k === 0 && n === 0){ 
+            memo[k][n] = 1  
+            return memo[k][n]     
+          }
+
+          if(n <= 0 || k <= 0){
+            if(!(n === 0 && k === 0)){
+              memo[k][n] = 0
+              return memo[k][n]
+            }             
+          }
+
+          if(memo[k][n-k] === -1){
+            memo[k][n-k] = pk(k, n - k, memo)
+          }
+          
+          if(memo[k-1][n-1] === -1){            
+            memo[k-1][n-1] = pk(k - 1, n - 1, memo)
+          }
+
+          if (n - k < 0 ){ return 0 }
+
+          return memo[k][n-k] + memo[k-1][n-1]
+        }
+
+        function sum(num) {                    
+          let memo = new Array(num + 1)        
+          let suma = 0          
+          for(let i = 0; i < num + 1; i++){            
+            memo[i] = new Array(num + 1).fill(-1)
+          }          
+          for(let k = 1; k <= num; k++){
+            suma = suma + pk(k, num, memo)
+          }
+          return suma;
+        }        
+      </script>
     </div>
   </div>
 </body>
 </html>
-
