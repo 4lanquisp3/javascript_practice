@@ -596,6 +596,39 @@
           return suma;
         }        
       </script>
+
+      <script>  
+        function Calculator(operator, numb){
+          this.numb = numb
+          this.operator = operator
+        }
+
+        Calculator.prototype.calcule = function(numa){
+          switch(this.operator){
+            case "+" : return numa + this.numb
+            case "-" : return numa - this.numb
+            case "*" : return numa * this.numb
+            case "/" : return Math.trunc(numa / this.numb)
+          }
+        }
+
+        const zero = (calcu = "") => calcu === "" ? 0 : calcu.calcule(0)
+        const one = (calcu = "") => calcu === "" ? 1 : calcu.calcule(1)
+        const two = (calcu = "") => calcu === "" ? 2 : calcu.calcule(2)
+        const three = (calcu = "") =>  calcu === "" ? 3 : calcu.calcule(3)
+        const four = (calcu = "") =>  calcu === "" ? 4 : calcu.calcule(4)
+        const five = (calcu = "") =>  calcu === "" ? 5 : calcu.calcule(5)
+        const six = (calcu = "") =>  calcu === "" ? 6 : calcu.calcule(6)
+        const seven = (calcu = "") =>  calcu === "" ? 7 : calcu.calcule(7)
+        const eight = (calcu = "") =>  calcu === "" ? 8 : calcu.calcule(8)
+        const nine = (calcu = "") =>  calcu === "" ? 9 : calcu.calcule(9)
+
+        const plus = (numb) =>  new Calculator("+",numb)
+        const minus = (numb) => new Calculator("-",numb)
+        const times = (numb) =>  new Calculator("*",numb)
+        const dividedBy = (numb) =>  new Calculator("/",numb)
+      
+      </script>
     </div>
   </div>
 </body>
