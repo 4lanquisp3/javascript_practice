@@ -643,6 +643,24 @@
           return parseInt(number);
         };
       </script>
+      <script>
+        function rot13(message){
+          let cipher = ""
+          for(let i = 0; i < message.length; i++){
+            let n = message.charCodeAt(i)      
+            if(n > 64 && n < 91){
+              n += 13            
+              cipher += String.fromCharCode(n > 90 ? 64 + (n - 90) : n)
+            }else if(n > 96 && n < 123){
+              n += 13              
+              cipher += String.fromCharCode(n > 122 ? 96 + (n - 122) : n)
+            }else{
+              cipher += message.charAt(i) 
+            }            
+          }
+          return cipher
+        }
+      </script>
     </div>
   </div>
 </body>
