@@ -661,6 +661,19 @@
           return cipher
         }
       </script>
+      <script>
+        /* Sumar dos numeros sin usar +,-,",',´,[],arrays,...*/
+        function add (x, y) {
+          while(y != 0){
+            let carry = x & y
+            x = x ^ y;
+            y = carry << 1
+          }
+          return x
+        }
+        const add2 = (x, y) => y === 0 ? x : add2(x ^ y, (x & y) << 1)
+
+      </script>
     </div>
   </div>
 </body>
