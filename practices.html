@@ -674,6 +674,15 @@
         const add2 = (x, y) => y === 0 ? x : add2(x ^ y, (x & y) << 1)
 
       </script>
+      <script>
+        
+        function domainName(url){
+          url = /http/.test(url) ? url : "http://" + url
+          url = url.match(/\/\/[\w\-\.]+/)[0].slice(2)
+          url = /www/.test(url) ? url : "www." + url
+          return url.match(/[\.][\w\-]+/)[0].slice(1)
+        }
+      </script>
     </div>
   </div>
 </body>
