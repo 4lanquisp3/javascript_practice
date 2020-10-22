@@ -1,3 +1,6 @@
+/**
+ * CURSO FUNDAMENTOS DE JAVASCRIPT DE PLATZI
+ */
 var alan = {
   nombre: 'Alan',
   apellido: 'Quispe',
