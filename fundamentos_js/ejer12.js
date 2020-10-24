@@ -34,3 +34,12 @@ for (let i = 0; i < 10000000; i++) {
  * Mostrar un Alert, es ASINCRONO
  * Peticion a una API, es ASINCRONO
  */
+
+
+/**
+ * En sintesis, sabremos que la función 
+ * será demorada cuando hagamos un callback. 
+ * Que es una función que tenga como argumento 
+ * otra función. Es decir que se requiere el 
+ * resultado de la función b para completar a.
+ */
