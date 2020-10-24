@@ -24,18 +24,37 @@
 const API_URL = 'https://swapi.dev/api/'
 const PEOPLE_URL = 'people/:id'
 const opts = { crossDomain: true }
-
-const onPeopleResponse = function(persona){
-  // console.log(arguments)
-  console.log(`Hola yo soy, ${persona.name}`)
-}
-
-function obtenerPersonaje(id){
+var nombre = 'alan quispe'
+function obtenerPersonaje(id, callback){
   const url = `${API_URL}${PEOPLE_URL.replace(':id',id)}`
-  $.get(url, opts, onPeopleResponse)
+  
+  $.get(url, opts, function(persona){
+    // console.log(arguments)
+    console.log(`Hola yo soy, ${persona.name}`)
+    console.log(`y yo me llamo ${nombre}`)
+    if(callback){
+      callback()
+    }
+  })
 }
 
-
+/** Ahora las peticiones son en Serie y no en paralelo
+ *  pero este codigo "callback hell", nuestro codigo es
+ *  poco legible un infierno de callbacks. 
+ */
+obtenerPersonaje(1,function(){
+  obtenerPersonaje(2,function(){
+    obtenerPersonaje(3,function(){
+      obtenerPersonaje(4,function(){
+        obtenerPersonaje(5,function(){
+          obtenerPersonaje(6,function(){
+            obtenerPersonaje(7)
+          })
+        })
+      })
+    })
+  })
+})
 /**
  * Los requests se hacen en paralelo y no sabemos 
  * en que orden van a llegar los requests
