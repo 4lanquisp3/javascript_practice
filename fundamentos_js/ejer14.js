@@ -19,21 +19,33 @@ function onError(id){
 }
 
 obtenerPersonaje(1)
-  .then(function(personaje){ // "personaje" es data que nos llega de resolve(data)
+  .then(personaje => { // "personaje" es data que nos llega de resolve(data)
     console.log(`El personaje 1 es ${personaje.name}`)
+    return obtenerPersonaje(2)
   })
-  .catch(onError) // onError recibe id, el id de reject(id)
-
-obtenerPersonaje(2)
-  .then(function(personaje){
+  .then(personaje => {
     console.log(`El personaje 2 es ${personaje.name}`)
+    return obtenerPersonaje(3)
   })
-  .catch(onError)
-
-
-obtenerPersonaje(3)
-  .then(function(personaje){
+  .then(personaje => {
     console.log(`El personaje 3 es ${personaje.name}`)
+    return obtenerPersonaje(4)
   })
-  .catch(onError)
-
+  .then(personaje => {
+    console.log(`El personaje 4 es ${personaje.name}`)
+    return obtenerPersonaje(5)
+  })
+  .then(personaje => {
+    console.log(`El personaje 5 es ${personaje.name}`)
+    return obtenerPersonaje(6)
+  })
+  .then(personaje => {
+    console.log(`El personaje 6 es ${personaje.name}`)
+    return obtenerPersonaje(7)
+  })
+  .then(personaje => {
+    console.log(`El personaje 7 es ${personaje.name}`)
+  })
+  // Algo bueno: Si en cualquiera de las promesas sucede algun error
+  // el catch es el mismo para todos
+  .catch(onError) // onError recibe id, el id de reject(id)
