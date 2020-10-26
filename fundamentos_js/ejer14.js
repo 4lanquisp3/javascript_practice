@@ -18,7 +18,25 @@ function onError(id){
   console.log(`Sucedió un error al obtener el personaje ${id}`)
 }
 
-obtenerPersonaje(1)
+var ids = [1, 2, 3, 4, 5, 6, 7]
+
+/* var promesas = ids.map(function(id){
+  return obtenerPersonaje(id)
+}) */
+
+var promesas = ids.map(id => obtenerPersonaje(id))
+
+/**
+ * Promise.all, metodo que tiene la clase de promesas
+ * que recibe como argumento un array de promesas.
+ */
+Promise
+  .all(promesas)
+  .then(personajes => console.log(personajes)) // personajes -> Array con los valores q 
+                                               // esperamos de cada una de las promesas
+  .catch(onError) // Se ejecuta si cualquiera de las promesas fallan
+
+/* obtenerPersonaje(1)
   .then(personaje => { // "personaje" es data que nos llega de resolve(data)
     console.log(`El personaje 1 es ${personaje.name}`)
     return obtenerPersonaje(2)
@@ -49,3 +67,4 @@ obtenerPersonaje(1)
   // Algo bueno: Si en cualquiera de las promesas sucede algun error
   // el catch es el mismo para todos
   .catch(onError) // onError recibe id, el id de reject(id)
+ */
